@@ -1,0 +1,102 @@
+@layer components {
+  :root {
+    --form-input--border-color: theme('colors.gray.300');
+    --form-input--border-color-focus: theme('colors.blue.600');
+    --form-input--text-color: theme('colors.gray.700');
+    --form-input--bg-color: theme('colors.white');
+  }
+
+  .\%_input__base {
+    @apply box-border py-1.5 px-2 text-base bg-clip-padding;
+  }
+  .\%_input__border {
+    @apply rounded border border-[var(--form-input--border-color)];
+    @apply transition-colors ease-in-out focus:border-[var(--form-input--border-color-focus)] active:border-[var(--form-input--border-color-focus)];
+    outline: none;
+    &:focus {
+      outline: none;
+    }
+  }
+  .\%_input__colors {
+    @apply text-[var(--form-input--text-color)] bg-[var(--form-input--bg-color)];
+  }
+
+  /* .\%_input__font {} */
+
+  input:where([type='email'][type='text'], .form-input) {
+    @apply %_input__base %_input__border %_input__colors;
+  }
+  input[type='color'].form-input {
+    @apply align-bottom text-base box-border bg-clip-padding outline-none;
+    @apply border border-solid border-gray-300 rounded;
+    @apply py-1.5 px-2 bg-white min-h-[2.375rem];
+  }
+  input[type='date'],
+  input[type='datetime'],
+  input[type='datetime-local'],
+  /* input[type='email'], */
+  input[type='file'],
+  input[type='month'],
+  input[type='number'],
+  input[type='password'],
+  input[type='search'],
+  input[type='tel'],
+  /* input[type='text'], */
+  input[type='time'],
+  input[type='url'],
+  input[type='week'] {
+    &:where(.form-input) {
+      @apply text-gray-700 bg-white;
+      @apply align-bottom text-base box-border px-3 py-1.5 bg-clip-padding outline-none;
+      /* @apply border border-solid border-gray-300 rounded; */
+      @apply %_input__border;
+      @apply transition-colors ease-in-out focus:border-blue-600 active:border-blue-600;
+
+      &:disabled {
+        @apply text-gray-500 bg-gray-100 cursor-not-allowed;
+      }
+
+      &::file-selector-button {
+        @apply px-3 py-1.5 -mx-3 -my-1.5 text-base rounded-l cursor-pointer;
+        @apply outline-none border-0 border-solid border-inherit;
+        @apply bg-gray-100 hover:bg-gray-200 active:bg-gray-200 focus:bg-gray-200;
+        @apply transition-colors ease-in-out;
+        margin-inline-end: 0.75rem;
+        border-inline-end-width: 1px;
+      }
+    }
+  }
+
+  .form-button {
+    @apply rounded shadow-sm hover:shadow-md focus:shadow-md active:shadow-md;
+    @apply align-bottom text-base box-border px-3 py-1.5 bg-clip-padding outline-none cursor-pointer;
+    @apply transition-colors ease-in-out;
+    @apply text-gray-800 bg-gray-100 hover:bg-gray-200 active:bg-gray-200 focus:bg-gray-200;
+    @apply border border-solid border-gray-300 focus:border-gray-400 active:border-gray-400;
+
+    &:disabled {
+      @apply cursor-not-allowed text-gray-400 shadow-none hover:bg-gray-100;
+    }
+
+    &--primary {
+      @apply form-button;
+      @apply text-white bg-blue-600 hover:bg-blue-700 active:bg-blue-700 focus:bg-blue-700;
+      @apply border-blue-600 focus:border-blue-700 active:border-blue-700;
+
+      &:disabled {
+        @apply cursor-not-allowed bg-blue-500 border-blue-500 text-blue-200 shadow-none hover:bg-blue-500;
+      }
+    }
+  }
+
+  /*
+  button
+  checkbox
+  image
+
+  radio
+  range
+  reset
+  submit
+  */
+}

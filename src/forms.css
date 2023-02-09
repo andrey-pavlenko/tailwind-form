@@ -1,0 +1,166 @@
+@layer components {
+  :root {
+    --form-input-text-color: theme('colors.gray.700');
+    --form-input-bg-color: theme('colors.white');
+    --form-input-disabled-text-color: theme('colors.gray.400');
+    --form-input-disabled-bg-color: theme('colors.gray.100');
+    --form-input-border-color: theme('colors.gray.300');
+    --form-input-border-color-focus: theme('colors.blue.600');
+
+    --form-focus-ring-active-color: theme('colors.blue.300');
+
+    --form-checkbox-radio-border-color: theme('colors.gray.300');
+    --form-checkbox-radio-checked-color: theme('colors.blue.600');
+    --form-checkbox-checked-bg-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'%3e%3cpath fill='none' stroke='%23fff' stroke-linecap='round' stroke-linejoin='round' stroke-width='3' d='m6 10 3 3 6-6'/%3e%3c/svg%3e");
+    --form-checkbox-indeterminate-bg-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'%3e%3cpath fill='none' stroke='%23fff' stroke-linecap='round' stroke-linejoin='round' stroke-width='3' d='M6 10h8'/%3e%3c/svg%3e");
+    --form-checkbox-radio-disabled-bg-color: theme('colors.gray.300');
+    --form-radio-checked-bg-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'%3e%3ccircle r='2' fill='%23fff'/%3e%3c/svg%3e");
+
+    --from-select-arrow-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3e%3cpath fill='none' stroke='%23343a40' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='m2 5 6 6 6-6'/%3e%3c/svg%3e");
+    --form-file-button-bg-color: theme('colors.gray.100');
+
+    --form-range-bg-color: theme('colors.gray.300');
+    --form-range-slider-color: theme('colors.blue.600');
+
+    --from-button-text-color: theme('colors.gray.700');
+    --from-button-text-color-focus: theme('colors.gray.800');
+    --from-button-text-color-hover: theme('colors.gray.800');
+    --from-button-text-color-disabled: theme('colors.gray.500');
+    --from-button-bg-color: theme('colors.gray.100');
+    --from-button-bg-color-focus: theme('colors.gray.300');
+    --from-button-bg-color-hover: theme('colors.gray.300');
+    --from-button-bg-color-disabled: theme('colors.gray.300');
+    --from-button-border-color: theme('colors.gray.400');
+    --from-button-border-color-focus: theme('colors.gray.600');
+    --from-button-border-color-hover: theme('colors.gray.600');
+    --from-button-border-color-disabled: theme('colors.gray.400');
+  }
+
+  .\%_form-focus-ring-active-color {
+    @apply focus:ring ring-[color:var(--form-focus-ring-active-color)];
+  }
+  .\%_form-transition {
+    @apply transition-all ease-in-out;
+  }
+
+  .form-input,
+  .form-select {
+    @apply %_form-focus-ring-active-color %_form-transition;
+    @apply py-1.5 px-3 bg-clip-padding min-h-[2.375rem] appearance-none;
+    @apply outline-none focus:outline-none active:outline-none;
+    @apply text-[var(--form-input-text-color)] bg-[var(--form-input-bg-color)];
+    @apply rounded-md border border-[var(--form-input-border-color)] focus:border-[var(--form-input-border-color-focus)];
+    @apply disabled:text-[var(--form-input-disabled-text-color)] disabled:bg-[var(--form-input-disabled-bg-color)] disabled:cursor-not-allowed;
+    &.sm {
+      @apply py-1 px-1.5 text-sm min-h-[1.875rem];
+    }
+    &.lg {
+      @apply text-lg min-h-[2.625rem];
+    }
+    &::file-selector-button {
+      @apply px-3 py-1.5 -mx-3 -my-1.5 leading-normal;
+      @apply rounded-l border-none text-[var(--form-input-text-color)] bg-[var(--form-file-button-bg-color)];
+      margin-inline-end: 0.75rem;
+      border-inline-end: 1px solid var(--form-input-border-color);
+    }
+  }
+  .form-select {
+    @apply pr-8;
+    @apply bg-[image:var(--from-select-arrow-image)] bg-no-repeat bg-[length:1em_0.75em] bg-[right_0.5em_center];
+    &.sm {
+      @apply pr-6 bg-[right_0.375em_center];
+    }
+    &.lg {
+      @apply pr-10 bg-[right_0.625em_center];
+    }
+  }
+
+  .form-checkbox {
+    @apply %_form-focus-ring-active-color %_form-transition;
+    @apply appearance-none w-[1em] h-[1em];
+    @apply rounded border border-[var(--form-checkbox-radio-border-color)];
+    @apply checked:bg-[image:var(--form-checkbox-checked-bg-image)] checked:bg-[color:var(--form-checkbox-radio-checked-color)] checked:border-[color:var(--form-checkbox-radio-checked-color)];
+    @apply indeterminate:bg-[image:var(--form-checkbox-indeterminate-bg-image)] indeterminate:bg-[color:var(--form-checkbox-radio-checked-color)] indeterminate:border-[color:var(--form-checkbox-radio-checked-color)];
+    @apply disabled:bg-[var(--form-checkbox-radio-disabled-bg-color)] disabled:border-[color:var(--form-checkbox-radio-disabled-bg-color)] disabled:cursor-not-allowed;
+  }
+
+  .form-radio {
+    @apply %_form-focus-ring-active-color %_form-transition;
+    @apply appearance-none w-[1em] h-[1em];
+    @apply rounded-full border border-[var(--form-checkbox-radio-border-color)];
+    @apply checked:bg-[image:var(--form-radio-checked-bg-image)] checked:bg-[color:var(--form-checkbox-radio-checked-color)] checked:border-[color:var(--form-checkbox-radio-checked-color)];
+    @apply disabled:bg-[var(--form-checkbox-radio-disabled-bg-color)] disabled:border-[color:var(--form-checkbox-radio-disabled-bg-color)] disabled:cursor-not-allowed;
+  }
+
+  .\%_form-range-slider {
+    @apply border-none rounded-full bg-[var(--form-range-slider-color)];
+    @apply transition-all ease-in-out;
+  }
+  .\%_form-range-slider-focus {
+    @apply ring ring-[color:var(--form-focus-ring-active-color)];
+  }
+
+  .form-range {
+    @apply appearance-none bg-[var(--form-range-bg-color)] rounded-full h-2;
+    &::-moz-range-thumb {
+      @apply %_form-range-slider;
+    }
+    &::-webkit-slider-thumb {
+      @apply %_form-range-slider;
+    }
+    &:focus {
+      &::-moz-range-thumb {
+        @apply %_form-range-slider-focus;
+      }
+      &::-webkit-slider-thumb {
+        @apply %_form-range-slider-focus;
+      }
+    }
+  }
+
+  .form-button {
+    @apply inline-block text-center align-middle appearance-none cursor-pointer;
+    @apply py-1.5 px-3 min-h-[2.375rem];
+    @apply outline-none focus:outline-none active:outline-none;
+    @apply text-[var(--from-button-text-color)]
+      hover:text-[var(--from-button-text-color-hover)]
+      focus:text-[var(--from-button-text-color-focus)];
+    @apply rounded-sm box-border border border-b-2 border-[var(--from-button-border-color)]
+      active:border-b
+      hover:border-[var(--from-button-border-color-hover)]
+      focus:border-[var(--from-button-border-color-focus)];
+    @apply bg-[var(--from-button-bg-color)]
+      hover:bg-[var(--from-button-bg-color-hover)]
+      focus:bg-[var(--from-button-bg-color-focus)];
+    @apply disabled:text-[var(--from-button-text-color-disabled)]
+      disabled:bg-[var(--from-button-bg-color-disabled)]
+      disabled:border-[var(--from-button-border-color-disabled)]
+      disabled:active:border-b-2
+      disabled:cursor-not-allowed;
+    @apply transition-colors;
+    &:active:not(:disabled) {
+      @apply mt-px;
+    }
+    &.sm {
+      @apply py-1 px-1.5 text-sm min-h-[1.875rem];
+    }
+    &.lg {
+      @apply text-lg min-h-[2.625rem];
+    }
+  }
+
+  .form-button.primary {
+    --from-button-text-color: theme('colors.blue.100');
+    --from-button-text-color-focus: theme('colors.white');
+    --from-button-text-color-hover: theme('colors.white');
+    --from-button-text-color-disabled: theme('colors.blue.300');
+    --from-button-bg-color: theme('colors.blue.600');
+    --from-button-bg-color-focus: theme('colors.blue.700');
+    --from-button-bg-color-hover: theme('colors.blue.700');
+    --from-button-bg-color-disabled: theme('colors.blue.500');
+    --from-button-border-color: theme('colors.blue.700');
+    --from-button-border-color-focus: theme('colors.blue.900');
+    --from-button-border-color-hover: theme('colors.blue.900');
+    --from-button-border-color-disabled: theme('colors.blue.600');
+  }
+}
